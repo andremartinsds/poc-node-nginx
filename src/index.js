@@ -15,7 +15,7 @@ const config = {
 
 const myConection = mysql.createConnection(config);
 
-app.get("/create", async (req, res) => {
+app.get("/", async (req, res) => {
   const sql = `INSERT INTO people(name) values('${faker.name.firstName()}')`;
   await myConection.query(sql);
   const selectPeople = `SELECT * FROM people`;
@@ -34,10 +34,6 @@ app.get("/create", async (req, res) => {
     res.send(initTable + peopleSelected + endTable);
   });
   return;
-});
-
-app.get("/", (_, res) => {
-  res.send("<h1>Full Cycle Rocks!</h1>");
 });
 
 app.listen(port, () => {
